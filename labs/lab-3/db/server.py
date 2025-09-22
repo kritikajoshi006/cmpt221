@@ -16,7 +16,7 @@ db_uri: str = f"postgresql://{db_owner}:{db_pass}@localhost/{db_name}"
 
 # create the flask application & connect to db
 # templates are where html templates will go, static is where images will go
-app = Flask(__name__, 
+app = Flask(__name__,
             template_folder = os.path.join(os.getcwd(), 'templates'), 
             static_folder=os.path.join(os.getcwd(), 'static'))
 
@@ -27,9 +27,9 @@ db = SQLAlchemy(app)
 # the classes
 from db.schema.course import Course
 # uncomment the line below after creating the professor class
-# from db.schema.professor import Professor
+from db.schema.professor import Professor
 # uncomment the line below after reviewing the assoc table
-# from db.schema.professorcourse import ProfessorCourse
+from db.schema.professorcourse import ProfessorCourse
 
 # verify the db connection is successful
 with app.app_context():
