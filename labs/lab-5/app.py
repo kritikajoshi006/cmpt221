@@ -40,6 +40,16 @@ def create_app():
         """Home page"""
         return render_template('index.html')
     
+    @app.route('/excuse')
+    def about():
+        """Excuse page"""
+        return render_template('excuse.html')
+    
+    @app.route('/contact')
+    def contact():
+        """Contact page"""
+        return render_template('contact.html')
+    
     # add more routes here!
 
     return app

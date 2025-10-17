@@ -1,14 +1,25 @@
+
 body {
-    background-color: lightblue;
-  }
-  
-  h1 {
-    color: blueviolet;
-    text-align: center;
-  }
-  
-  p {
-    font-family: verdana;
-    font-size: 20px;
-    text-align: center;
-  }
+  background-color: rgb(8, 58, 87);
+  font-family: Comic Sans MS, cursive;
+  color: yellow;
+  text-align: center;
+  margin: 50px;
+}
+
+nav {
+  background-color: rgb(114, 255, 250);
+  padding: 20px;
+  font-size: 24px;
+}
+
+nav a {
+  color: red;
+  margin: 0 30px;
+  text-decoration: underline wavy blue;
+}
+
+img {
+  width: 300px;
+  border: 10px dashed rgb(235, 195, 235);
+}
