@@ -1,6 +1,7 @@
 """query.py: leverages SQLAlchemy to create generic queries for interacting with the postgres DB"""
 from db.server import get_session
 
+
 def get_all(table) -> list:
     """Select all records from a DB table using SQLAlchemy ORM.
 
@@ -18,3 +19,20 @@ def get_all(table) -> list:
     
     finally:
         session.close()
+
+def insert(record) -> None:
+    session = get_session()
+    try:
+        session.add(record)
+        session.commit()
+    except Exception as e:
+        session.rollback()
+        print(f"Error inserting record: {e}")
+        raise e
+    finally:
+        session.close()
+
+def get_one(model, field, value):
+    session = get_session()
+    return session.query(model).filter(field == value).first()
+

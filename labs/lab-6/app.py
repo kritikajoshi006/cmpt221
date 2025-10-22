@@ -2,26 +2,30 @@
 
 import os
 from dotenv import load_dotenv
-from flask import Flask, render_template
-from db.query import get_all
+from flask import Flask, render_template, request, redirect, url_for
+from db.query import get_all, insert, get_one
 from db.server import init_database
 from db.schema import Users
 
+
 # load environment variables from .env
 load_dotenv()
+
 
 # database connection - values set in .env
 db_name = os.getenv('db_name')
 db_owner = os.getenv('db_owner')
 db_pass = os.getenv('db_pass')
+print(f"db_name={db_name}, db_owner={db_owner}, db_pass={db_pass}")
 db_url = f"postgresql://{db_owner}:{db_pass}@localhost/{db_name}"
 
 def create_app():
     """Create Flask application and connect to your DB"""
-    # create flask app
+    # create flask app 
     app = Flask(__name__, 
                 template_folder=os.path.join(os.getcwd(), 'templates'), 
                 static_folder=os.path.join(os.getcwd(), 'static'))
+    
     
     # connect to db
     app.config["SQLALCHEMY_DATABASE_URI"] = db_url
@@ -42,19 +46,39 @@ def create_app():
         """Home page"""
         return render_template('index.html')
     
-    @app.route('/signup')
+    @app.route('/signup', methods=['GET', 'POST'])
     def signup():
         """Sign up page: enables users to sign up"""
-        #TODO: implement sign up logic here
-
+        if request.method == 'POST':
+            user = Users(
+                FirstName=request.form.get('FirstName'),
+                LastName=request.form.get('LastName'),
+                Email=request.form.get('Email'),
+                Password=request.form.get('Password'),
+                PhoneNumber=request.form.get('PhoneNumber')
+            )
+            
+            insert(user)
+            return redirect(url_for('success'))
+        
         return render_template('signup.html')
     
-    @app.route('/login')
-    def login():
-        """Log in page: enables users to log in"""
-        # TODO: implement login logic here
+    @app.route('/login', methods=['GET', 'POST'])
+    
+    @app.route('/login', methods=['GET', 'POST']) 
+    def login(): 
+        if request.method == 'POST':
+            email = request.form.get('Email')
+            password = request.form.get('Password')
+            user = get_one(Users, Users.Email, email)
+            
+            if user and user.Password == password:
+                return redirect(url_for('success'))
+            else: 
+                return redirect(url_for('login'))
 
         return render_template('login.html')
+
 
     @app.route('/users')
     def users():
@@ -73,5 +97,5 @@ def create_app():
 
 if __name__ == "__main__":
     app = create_app()
-    # debug refreshes your application with your new changes every time you save
+   
     app.run(debug=True)
