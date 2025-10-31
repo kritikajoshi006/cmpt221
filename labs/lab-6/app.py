@@ -57,13 +57,26 @@ def create_app():
                 Password=request.form.get('Password'),
                 PhoneNumber=request.form.get('PhoneNumber')
             )
+
+        error: str = None
+        is_valid: bool = False
+
+        if is_valid: 
+            insert_stmt = insert(User).values(request.form)
             
+        if request.method["FirstName"].isalpha():
+            print(f'Input: {request.form["FirstName"]} is valid.')
+            is_valid = True
+        else:
+            error_message = f'Input: {request.form["FirstName"]} is invalid. First Name can only contain letters.'
+            print(f'Input: {request.form["FirstName"]} is invalid.')
+            
+            error = error_message
+
             insert(user)
             return redirect(url_for('success'))
         
         return render_template('signup.html')
-    
-    @app.route('/login', methods=['GET', 'POST'])
     
     @app.route('/login', methods=['GET', 'POST']) 
     def login(): 
