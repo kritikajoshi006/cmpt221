@@ -36,6 +36,10 @@ def init_database():
     try:
         # import all of the tables
         from db.schema import Users
+        from sqlalchemy import create_engine
+        test_engine = create_engine('sqlite:///:memory:', echo=False)
+        Base.metadata.create_all(bind=test_engine)
+        print("----------- Test DB initialized in-memory")
         
         # create all of the tables
         Base.metadata.create_all(bind=engine)

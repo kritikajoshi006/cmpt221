@@ -36,3 +36,31 @@ def test_invalid_phone_number(client):
         'Password': 'password123'
     })
     assert b'Phone number must be exactly 10 digits' in response.data
+
+def test_wrong_password(client):
+    """Test login fails with incorrect password"""
+    response = client.post('/login', data={
+        'Email': 'existinguser@test.com',
+        'Password': 'wrongpassword'
+    })
+    assert b'Failed login attempt' in response.data or b'error' in response.data
+
+def test_nonexistent_email(client):
+    """Test login fails with an email that doesn't exist"""
+    response = client.post('/login', data={
+        'Email': 'nonexistent@test.com',
+        'Password': 'password123'
+    })
+    assert b'Failed login attempt' in response.data or b'error' in response.data
+
+def test_success_page_access(client):
+    """Test that success page loads"""
+    response = client.get('/success')
+    assert response.status_code == 200
+    assert b'Success' in response.data
+
+def test_error_page_access(client):
+    """Test that error page loads"""
+    response = client.get('/error')
+    assert response.status_code == 200
+    assert b'Something went wrong' in response.data or b'error' in response.data
