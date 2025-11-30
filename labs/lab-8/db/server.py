@@ -2,7 +2,7 @@
 import os
 from dotenv import load_dotenv
 from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 # load environment variables from .env
@@ -35,7 +35,11 @@ def init_database():
     """Initialize database tables"""
     try:
         # import all of the tables
-        from db.schema import Course, Professor, ProfessorCourse
+        from db.schema import Users
+        from sqlalchemy import create_engine
+        test_engine = create_engine('sqlite:///:memory:', echo=False)
+        Base.metadata.create_all(bind=test_engine)
+        print("----------- Test DB initialized in-memory")
         
         # create all of the tables
         Base.metadata.create_all(bind=engine)
