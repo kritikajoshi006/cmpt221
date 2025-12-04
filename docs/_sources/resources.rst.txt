@@ -1,41 +1,42 @@
+
 .. _`Resources`:
 
 Resources
 =========
-This section describes classes and functions private to <application-name>. It is intended to document how the application works
+This section describes classes and functions private to CMPT 221. It is intended to document how the application works
 
 labs.lab-1
 ----------
-<Short description of Lab 1>
+Creating a Pull Request - Learned GitHub workflow by forking a repository, making changes, and submitting pull requests for code review.
 
 labs.lab-2
 ----------
-<Short description of Lab 2>
+Virtual Environment Setup - Configured Python development environment using venv and pip to manage project dependencies.
 
 labs.lab-3
 ----------
-<Short description of Lab 3>
+PostgreSQL Database - Created and connected to a relational database, executing SQL queries for data management.
 
 labs.lab-4
 ----------
-<Short description of Lab 4>
+SQL vs. ORM - Compared raw SQL queries with Object-Relational Mapping using SQLAlchemy for database interactions.
 
 labs.lab-5
 ----------
-<Short description of Lab 5>
+GUI Application - Built a graphical user interface.
 
 labs.lab-6
 ----------
-<Short description of Lab 6>
+Login System - Implemented user authentication with password hashing and session management for secure access.
 
 labs.lab-7
 ----------
-<Short description of Lab 7>
+Defensive Programming - Added input validation, error handling, and exception management for robust applications.
 
 labs.lab-8
 ----------
-<Short description of Lab 8>
+Testing with Pytest - Created comprehensive unit tests to verify function correctness and handle edge cases.
 
 labs.lab-9
 ----------
-<Short description of Lab 9>
+Documentation - Generated professional documentation using Sphinx and deployed to GitHub Pages.

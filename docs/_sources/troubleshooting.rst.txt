@@ -4,17 +4,62 @@ Troubleshooting
 ===============
 This section describes some common issues that can arise and possible solutions.
 
-Issue #1
+Issue #1: Sphinx Build Failure
 --------
-<Decription>
-<Solution>
+Error message "sphinx-build: command not found" or "make: *** [html] Error 127" when running `make html`.
 
-Issue #2
---------
-<Description>
-<Solution>
+Solution:
+   .. code-block:: bash
 
-Issue #3
+      # Activate virtual environment
+      source venv/bin/activate
+      
+      # Install Sphinx
+      pip install -U sphinx
+      
+      # Verify installation
+      sphinx-build --version
+
+   If using system Python, install with:
+   .. code-block:: bash
+
+      pip3 install sphinx
+        # or
+      pip install --user sphinx
+
+
+Issue #2: GitHub Pages 404 Error
 --------
-<Description>
-<Solution>
+Getting "404 File not found" at https://kritikajoshi006.github.io/cmpt221/
+
+Solution:
+   1. Verify HTML files are in root `/docs` folder (not in `/docs/html/`):
+      .. code-block:: bash
+
+         ls docs/index.html  
+      
+   2. Ensure `.nojekyll` file exists in `/docs`:
+      .. code-block:: bash
+
+         touch docs/.nojekyll
+      
+   3. Check GitHub Pages settings:
+      - Go to: https://github.com/kritikajoshi006/cmpt221/settings/pages
+      - **Source**: Deploy from a branch
+      - **Branch**: `lab-9`
+      - **Folder**: `/docs`
+
+Issue #3: Virtual Environment Package Issues
+--------
+Packages not found or import errors when running Python scripts.
+
+Solution:
+   1. Ensure virtual environment is activated:
+      .. code-block:: bash
+
+         source venv/bin/activate
+      
+   2. Install required packages:
+      .. code-block:: bash
+
+         pip install -r requirements.txt

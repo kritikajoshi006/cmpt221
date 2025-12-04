@@ -2,10 +2,10 @@
 
 Introduction
 ============
-<tell the reader about the project>
+This documentation covers the CMPT 221 lab assignments.  The software development course teaches concepts like creating pull requests, branching, and merging using Git and GitHub. Each lab assignment focuses on different aspects of software development, including databases, python, pytest, html, css, testing, and many more.
 
 Documentation
 -------------
 * `Document Page`_
 
-.. _Document Page: <link to github pages>
+.. _Document Page: https://kritikajoshi006.github.io/cmpt221/
