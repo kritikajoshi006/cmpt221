@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Excuse</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <nav>
+    <a href="/">Home</a>
+    <a href="/excuse">Excuse</a>
+    <a href="/contact">Contact</a>
+  </nav>
+
+  <h1>😷 I Was Sick 😷</h1>
+  <p>Sorry for submitting this lab late. I was sick and barely functioning. Between sneezing every 3 seconds and sleeping 18 hours a day, this lab didn’t stand a chance. I tried to code through the coughs, but didn't go well as my brain was not creative enough.</p>
+  <img src="{{ url_for('static', filename='excuse.jpg') }}" alt="Sick vibes">
+
+  <p>This image perfectly captures my state of mind while trying to finish this lab.</p>
+</body>
+</html>
